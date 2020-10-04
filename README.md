@@ -1,24 +1,17 @@
-# vue-todos
+# Todo App
 
-## Project setup
-```
-yarn install
-```
+### Technologies
+ - Vue
+ - Vuex
 
-### Compiles and hot-reloads for development
+I wanted to start to wrap my head around Vuex so I thought I would refactor the [TodoMVC](http://todomvc.com/) project to use the Vuex.
+
+Avalible commands
+
 ```
 yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
+yarn test:unit
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Built using the [vue-cli](https://cli.vuejs.org/)
