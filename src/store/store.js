@@ -14,22 +14,6 @@ const state = () => ({
 
 // getters
 const getters = {
-    all: state => {
-        state.visibility = 'all'
-        return state.todos
-    },
-    active: state => {
-        state.visibility = 'active'
-        return state.todos.filter((todo) => {
-            return !todo.completed;
-        });
-    },
-    completed: state => {
-        state.visibility = 'completed'
-        return state.todos.filter((todo) => {
-            return todo.completed;
-        });
-    }
 }
 
 
@@ -59,12 +43,26 @@ export const actions = {
         commit('removeCompleted')
     },
 
-    markComplete({ commit }, { id }) {
-        commit('markComplete', id)
+    toggleCompleteAll({ commit }) {
+        commit('toggleCompleteAll')
+    },
+
+    toggleDone({ commit }, todo) {
+        commit('toggleDone', todo)
     },
 
     setNewTodo({ commit }, title) {
         commit('setNewTodo', title)
+    },
+
+    all({ commit }) {
+        commit('all')
+    },
+    active({ commit }) {
+        commit('active')
+    },
+    completed({ commit }) {
+        commit('completed')
     }
 };
 
@@ -112,12 +110,16 @@ const mutations = {
         state.todos = state.todos.filter(todo => todo.completed === true);
     },
 
-    markComplete(state, { id }) {
-        state.todos.map(todo => {
-            if (todo.id === id) {
-                todo.completed = true
-            }
+    toggleCompleteAll(state) {
+        state.todos = state.todos.map(todo => ({ ...todo, completed: !todo.completed }))
+    },
 
+    toggleDone(state, { id }) {
+        state.todos = state.todos.map(todo => {
+            if (id === todo.id) {
+                todo.completed = !todo.completed
+            }
+            return { ...todo }
         })
 
     },
@@ -125,6 +127,25 @@ const mutations = {
     setNewTodo(state, title) {
         state.newTodo = title
     },
+
+    all(state) {
+        state.visibility = 'all'
+        return state.todos
+    },
+
+    active(state) {
+        state.visibility = 'active'
+        return state.todos.filter((todo) => {
+            return !todo.completed;
+        });
+    },
+
+    completed(state) {
+        state.visibility = 'completed'
+        return state.todos.filter((todo) => {
+            return todo.completed;
+        });
+    }
 }
 
 export default {

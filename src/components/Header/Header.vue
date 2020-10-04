@@ -19,11 +19,11 @@ export default {
     newTodo: {
       // getter
       get() {
-        return this.$store.state.todos.newTodo;
+        return this.$store.state.newTodo;
       },
       // setter
       set(newValue) {
-        return this.$store.dispatch('todos/setNewTodo', newValue, {
+        return this.$store.dispatch('setNewTodo', newValue, {
           root: true,
         });
       },
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     addTodo() {
-      this.$store.dispatch('todos/addTodo', null, { root: true });
+      this.$store.dispatch('addTodo', null, { root: true });
     },
   },
 };

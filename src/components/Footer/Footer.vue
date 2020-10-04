@@ -33,13 +33,13 @@ export default {
   name: 'Footer',
   computed: {
     todos() {
-      return this.$store.state.todos.todos;
+      return this.$store.state.todos;
     },
     remaining() {
-      return this.$store.state.todos.todos.length
+      return this.$store.state.todos.length
     },
     visibility() {
-      return this.$store.state.todos.visibility;
+      return this.$store.state.visibility;
     },
   },
   methods: {
